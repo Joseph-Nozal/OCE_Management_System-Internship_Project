@@ -89,7 +89,15 @@ This solved a problem manual tracking simply couldn't: before this system, there
 
 A three-tier architecture: Power Apps as the UI layer, SharePoint as the relational database layer, and Power BI as the analytics/intelligence layer — all communicating natively within the Power Platform ecosystem.
 
-*(See `architecture-diagram.png` in `/screenshots` for the full system architecture and entity-relationship diagrams.)*
+![System Architecture Diagram](./screenshots/architecture/system-architecture.png)
+
+**Screen navigation flow:**
+
+![Screen Navigation Flow](./screenshots/architecture/screen-navigation-flow.png)
+
+**Cross-channel linking logic:**
+
+![Linking Logic Scenario](./screenshots/architecture/linking-logic-scenario.png)
 
 ## Screens & Screenshots
 
@@ -105,20 +113,25 @@ The application consists of **7 screens**:
 | `scrAddEngagementChannel` | Interface for linking a new campaign to an existing parent event |
 | `scrActions` | Modal for managing follow-up actions tied to a campaign |
 
-> 📸 *Add your screenshots here, e.g.:*
-> ```markdown
-> ### Login & Navigation
-> ![Login Screen](./screenshots/scrLogin.png)
-> ![Navigation Hub](./screenshots/scrDirection.png)
->
-> ### Campaign Management
-> ![Campaign Overview](./screenshots/scrOverview.png)
-> ![Campaign Creation](./screenshots/scrCreateEvent.png)
-> ![Campaign Details](./screenshots/scrDetails.png)
->
-> ### Cross-Channel Linking
-> ![Linking Interface](./screenshots/scrAddEngagementChannel.png)
-> ```
+### Login & Navigation
+
+![Login Screen](./screenshots/app/scrLogin.png)
+![Navigation Hub](./screenshots/app/scrDirection.png)
+
+### Campaign Management
+
+![Campaign Overview](./screenshots/app/scrOverview.png)
+![Campaign Creation - MTE/RTE](./screenshots/app/scrCreateEvent-mte-rte.png)
+![Campaign Creation - ON24](./screenshots/app/scrCreateEvent-on24.png)
+![Campaign Details](./screenshots/app/scrDetails.png)
+
+### Cross-Channel Linking
+
+![Linking Interface](./screenshots/app/scrAddEngagementChannel.png)
+
+### Action Management
+
+![Actions List](./screenshots/app/scrActions-list.png)
 
 ## Data Model
 
@@ -137,10 +150,12 @@ Five interconnected SharePoint Lists form the backend:
 - `MteRteList` → `MteRteActions` (one-to-many, by campaign)
 - `MteRteList` ↔ `ON24` (many-to-many, via shared `LinkGroupUID`)
 
-> 📸 *Add your Entity-Relationship Diagram here:*
-> ```markdown
-> ![ER Diagram](./screenshots/er-diagram.png)
-> ```
+![ER Diagram](./screenshots/architecture/er-diagram.png)
+
+**Sample data in the SharePoint backend:**
+
+![MteRteList Sample Data](./screenshots/sharepoint/mtertelist-sample.png)
+![ON24 Sample Data](./screenshots/sharepoint/on24-sample.png)
 
 ## Dashboards
 
@@ -154,11 +169,11 @@ Five Power BI dashboards turn raw SharePoint data into real-time, cross-channel 
 
 A unifying DAX calculated table, `AllCampaignsDetail`, merges MTE, RTE, and ON24 data into one queryable structure — enabling the cross-channel metrics that were previously impossible to generate manually.
 
-> 📸 *Add dashboard screenshots here:*
-> ```markdown
-> ![MTE Dashboard](./screenshots/dashboard-mte.png)
-> ![Summary Dashboard](./screenshots/dashboard-summary.png)
-> ```
+![MTE Dashboard](./screenshots/dashboards/powerbi-mte.png)
+![RTE Dashboard](./screenshots/dashboards/powerbi-rte.png)
+![ON24 Dashboard](./screenshots/dashboards/powerbi-on24.png)
+![Summary Dashboard](./screenshots/dashboards/powerbi-summary.png)
+![ON24 Tracker Dashboard](./screenshots/dashboards/powerbi-on24-tracker.png)
 
 ## Results & Impact
 
